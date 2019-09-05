@@ -73,7 +73,7 @@ public class Logic {
         boolean result = false;
         for (int i = 0; i < table.length; i++) {
             if (table[ 0 ][ 0 ] != table[ i ][ i ] || table[ 0 ][ table.length - 1 ] != table[ i ][ table.length - 1 - i ]) {
-                result = true; //сравниваем по диагоналям
+                result = true;   //сравниваем по диагоналям
                 break;
             }
         }
