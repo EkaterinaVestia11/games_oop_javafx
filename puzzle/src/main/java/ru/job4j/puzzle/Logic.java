@@ -78,17 +78,17 @@ public class Logic {
                if ( table[ i ][ j] == 1 ){
                  k ++;
                 }
-               if ( table[ i ][ j] == 1 ){
+               if ( table[ j ][ i ] == 1 ){
                  k2 ++;
                 }
              }
             if (k == table.length || k2 == table.length ){
-                result = true;
+                result = true; break;
           }
+            k = 0; k2 = 0;
         }
         return result;
     }
-
 
     public int[][] convert() {
         int[][] table = new int[this.size][this.size];
