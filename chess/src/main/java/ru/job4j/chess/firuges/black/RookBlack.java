@@ -17,7 +17,7 @@ public class RookBlack implements Figure {
     }
 
     @Override
-    public Cell position() {
+    public Cell position( ) {
         return this.position;
     }
 

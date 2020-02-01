@@ -1,9 +1,9 @@
 package ru.job4j.chess.firuges;
 
 public interface Figure {
-    Cell position();
+    Cell position( );//получение фигуры на поле
 
-    Cell[] way(Cell source, Cell dest);
+    Cell[] way(Cell source, Cell dest);//
 
     default String icon() {
         return String.format(
