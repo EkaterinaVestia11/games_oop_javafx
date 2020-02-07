@@ -23,7 +23,7 @@ public class LogicTest {
     public void WhereErrorFigureStep( ) {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        assertThat(logic.move(Cell.C1, Cell.D2), is(true));
+        assertThat(logic.move(Cell.C1, Cell.C2), is(false));
     }
 
     @Test

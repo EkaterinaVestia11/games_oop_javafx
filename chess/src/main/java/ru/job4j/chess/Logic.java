@@ -16,29 +16,58 @@ import java.util.Arrays;
 public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
+    private Object Cell;
 
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest)  {
         boolean rst = false;
         try {
             int index = this.findBy(source);
             int x;
             int y;
-            if (index != -1) {
-                Cell[] steps = this.figures[index].way(source, dest);
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
+            if (index != -1){
+                Cell[] steps=this.figures[ index ].way(source ,dest);
+                if ( steps.length > 0 && steps[ steps.length-1 ].equals(dest) ){
+                    if (isWayFree(steps) ){
+                        rst=true;
+                        this.figures[ index ]=this.figures[ index ].copy(dest);
+                    }
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return rst;
     }
+
+    private boolean isWayFree(Cell[] steps) {
+       int[] step = new int[steps.length];
+       int result = 0;
+       int countNumber = 0;
+       int count = 0;
+        for(int i=0; i < step.length ; i++) {
+            step[i] = 0;
+        }
+        for(int i=0; i < steps.length ; i++) {
+            if ( step[i] == 0){
+                for(int j=0; j <steps.length ; j++) {
+                   if ( steps[i] == steps[j] ){
+                       step[j] = 1;
+                       count++;
+                   }
+                }
+            }if ( countNumber < count ){
+                countNumber = count;
+                result++;
+            }
+        }
+        return false;
+    }
+
 
     public void clean() {
         for (int position = 0; position != this.figures.length; position++) {

@@ -12,18 +12,18 @@ public class BishopBlackTest {
 
     @Test
     public void whereCheckPosition( ) {
-      Cell first = C1;
-      Cell second = D2;
+      Cell first = Cell.C1;
+      Cell second = Cell.D2;
       Figure bishopBlack = new BishopBlack(C1);
       assertEquals(bishopBlack.position() ,C1);
     }
 
       @Test (expected= IllegalStateException.class)
     public void whereIsWay( ) {
-      Cell f = C1;
-      Cell sec = G5;
-      Figure bishopBlack = new BishopBlack(f);
-      assertThat(bishopBlack.way(f, sec), is(new Cell[]{D2, E3, F4, G5}));
+      Cell first = Cell.C1;
+      Cell second = Cell.G5;
+      Figure bishopBlack = new BishopBlack(first);
+      assertThat(bishopBlack.way(first, second), is(new Cell[]{D2, E3, F4, G5}));
     }
 
     @Test
