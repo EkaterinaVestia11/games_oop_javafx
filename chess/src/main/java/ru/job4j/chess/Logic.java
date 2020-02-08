@@ -37,7 +37,6 @@ public class Logic {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
