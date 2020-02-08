@@ -14,30 +14,33 @@ public class LogicTest {
 
     @Test
     public void WhereFigureStep( ) {
-       Logic logic = new Logic();
-       logic.add(new BishopBlack(Cell.C1));
-       assertThat(logic.move(Cell.C1, Cell.A3), is(true));
+        Logic logic=new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        assertThat(logic.move(Cell.C1 ,Cell.A3) ,is(true));
     }
 
     @Test
     public void WhereErrorFigureStep( ) {
-        Logic logic = new Logic();
+        Logic logic=new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        assertThat(logic.move(Cell.C1, Cell.C2), is(false));
+        assertThat(logic.move(Cell.C1 ,Cell.C2) ,is(false));
     }
 
     @Test
     public void WhereBlockedPath( ) {
-        Logic logic = new Logic();
+        Logic logic=new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new PawnBlack(Cell.D2));
-       assertThat(logic.move(Cell.C1, Cell.F4), is(true));
+        assertThat(logic.move(Cell.C1 ,Cell.F4) ,is(true));
     }
 
-    @Test
+    @Test(expected=WhereNoFindFigure.class)
     public void WhereNoFindFigure( ) {
-         Logic logic = new Logic();
-         logic.add(new BishopBlack(Cell.C1));
-         assertThat(logic.move(Cell.C1, Cell.G5), is(true));
+        Logic logic=new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        assertThat(logic.move(Cell.C1 ,Cell.G5) ,is(true));
+    }
+
+    private class WhereNoFindFigure extends Throwable {
     }
 }

@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
-    private Object Cell;
+    private ru.job4j.chess.firuges.Cell Cell;
 
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
@@ -45,29 +45,15 @@ public class Logic {
     }
 
     private boolean isWayFree(Cell[] steps) {
-       int[] step = new int[steps.length];
-       int result = 0;
-       int countNumber = 0;
-       int count = 0;
-        for(int i=0; i < step.length ; i++) {
-            step[i] = 0;
-        }
-        for(int i=0; i < steps.length ; i++) {
-            if ( step[i] == 0){
-                for(int j=0; j <steps.length ; j++) {
-                   if ( steps[i] == steps[j] ){
-                       step[j] = 1;
-                       count++;
-                   }
-                }
-            }if ( countNumber < count ){
-                countNumber = count;
-                result++;
+        boolean result = false;
+        for(int i=0; i < steps.length; i++) {
+            if ( this.findBy(steps[ i ]) != -1 ){
+                result = true;
+                break;
             }
         }
-        return false;
+        return result;
     }
-
 
     public void clean() {
         for (int position = 0; position != this.figures.length; position++) {
@@ -76,7 +62,7 @@ public class Logic {
         this.index = 0;
     }
 
-    private int findBy(Cell cell) {
+    private int findBy(Cell cell)  {
         int rst = -1;
         for (int index = 0; index != this.figures.length; index++) {
             if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
