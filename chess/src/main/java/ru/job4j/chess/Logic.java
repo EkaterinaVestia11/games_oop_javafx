@@ -44,10 +44,10 @@ public class Logic {
     }
 
     private boolean isWayFree(Cell[] steps) {
-        boolean result = false;
+        boolean result = true;
         for(int i=0; i < steps.length; i++) {
             if ( this.findBy(steps[ i ]) != -1 ){
-                result = true;
+                result = false;
                 break;
             }
         }

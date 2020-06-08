@@ -16,7 +16,7 @@ public class LogicTest {
     public void WhereFigureStep( ) {
         Logic logic=new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        assertThat(logic.move(Cell.C1 ,Cell.A3) ,is(true));
+        assertThat(logic.move(Cell.C1 ,Cell.B2) ,is(true));
     }
 
     @Test
@@ -31,16 +31,14 @@ public class LogicTest {
         Logic logic=new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new PawnBlack(Cell.D2));
-        assertThat(logic.move(Cell.C1 ,Cell.F4) ,is(true));
+        assertThat(logic.move(Cell.C1 ,Cell.F4) ,is(false));
     }
 
-    @Test(expected=WhereNoFindFigure.class)
+    @Test
     public void WhereNoFindFigure( ) {
         Logic logic=new Logic();
-        logic.add(new BishopBlack(Cell.C1));
-        assertThat(logic.move(Cell.C1 ,Cell.G5) ,is(true));
-    }
-
-    private class WhereNoFindFigure extends Throwable {
+        logic.add(new BishopBlack(Cell.F1));
+        assertThat(logic.move(Cell.F1 ,Cell.H3) ,is(true));
     }
 }
+

@@ -18,7 +18,7 @@ public class BishopBlackTest {
       assertEquals(bishopBlack.position() ,C1);
     }
 
-      @Test (expected= IllegalStateException.class)
+    @Test
     public void whereIsWay( ) {
       Cell first = Cell.C1;
       Cell second = Cell.G5;
