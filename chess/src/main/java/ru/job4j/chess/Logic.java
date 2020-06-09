@@ -26,11 +26,9 @@ public class Logic {
         boolean rst = false;
         try {
             int index = this.findBy(source);
-            int x;
-            int y;
             if (index != -1){
                 Cell[] steps=this.figures[ index ].way(source ,dest);
-                if ( steps.length > 0 && steps[ steps.length-1 ].equals(dest) ){
+                if (steps.length > 0 && steps[ steps.length-1 ].equals(dest)){
                     if (isWayFree(steps) ){
                         rst=true;
                         this.figures[ index ]=this.figures[ index ].copy(dest);
