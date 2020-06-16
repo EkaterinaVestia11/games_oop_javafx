@@ -27,6 +27,10 @@ public class Logic3T {
         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
                 this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
                 this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 0,1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0,2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 1,0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 2,0, 0, 1) ||
                 this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1);
     }
 
@@ -34,10 +38,23 @@ public class Logic3T {
         return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
                 this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
                 this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 0,1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0,2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 1,0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 2,0, 0, 1) ||
                 this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
     }
 
     public boolean hasGap() {
+        boolean result = true;
+        for(Figure3T[] row : table) {
+            for(Figure3T col : row) {
+                if (col.hasMarkX() && col.hasMarkO()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
         return true;
     }
 }
