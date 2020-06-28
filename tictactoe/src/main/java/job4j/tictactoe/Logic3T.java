@@ -1,6 +1,8 @@
 package job4j.tictactoe;
 
+import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class Logic3T {
     private final Figure3T[][] table;
@@ -23,38 +25,21 @@ public class Logic3T {
         return result;
     }
 
-    public boolean isWinnerX() {
-        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
-                this.fillBy(Figure3T::hasMarkX, 0,1, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkX, 0,2, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkX, 1,0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkX, 2,0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1);
+    public boolean isWin() {
+        return this.fillBy(Objects::nonNull ,0 ,0 ,1 ,0) ||
+                this.fillBy(Objects::nonNull,0 ,0 ,0 ,1) ||
+                this.fillBy(Objects::nonNull ,0 ,0 ,1 ,1) ||
+                this.fillBy(Objects::nonNull ,0 ,1 ,1 ,0) ||
+                this.fillBy(Objects::nonNull ,0 ,2 ,1 ,0) ||
+                this.fillBy(Objects::nonNull ,1 ,0 ,0 ,1) ||
+                this.fillBy(Objects::nonNull,2 ,0 ,0 ,1) ||
+                this.fillBy(Objects::nonNull ,this.table.length-1 ,0 ,-1 ,1);
     }
 
-    public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
-                this.fillBy(Figure3T::hasMarkO, 0,1, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkO, 0,2, 1, 0) ||
-                this.fillBy(Figure3T::hasMarkO, 1,0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkO, 2,0, 0, 1) ||
-                this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
-    }
-
-    public boolean hasGap() {
+    public boolean hasGap(Figure3T[][] table) {
         boolean result = true;
-        for(Figure3T[] row : table) {
-            for(Figure3T col : row) {
-                if (col.hasMarkX() && col.hasMarkO()) {
-                    result = false;
-                    break;
-                }
-            }
-        }
-        return true;
+        return Stream.of(isWin())
+                .anyMatch(Figure3T -> Stream.of(isWin())
+                        .allMatch(Predicate.isEqual(table)));
     }
 }
